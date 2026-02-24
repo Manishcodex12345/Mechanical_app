@@ -44,7 +44,7 @@ function showToast(text) {
   setTimeout(() => toast.classList.remove("show"), 1800);
 }
 
-function renderAdminList() {
+function render() {
   const filtered = requests
     .filter((r) => activeFilter === "All" || r.priority === activeFilter)
     .sort((a, b) => {
@@ -84,20 +84,6 @@ function renderAdminList() {
   });
 }
 
-function wireNavigation() {
-  document.querySelectorAll(".nav-link").forEach((btn) => {
-    btn.addEventListener("click", () => {
-      const target = btn.dataset.view;
-
-      document.querySelectorAll(".nav-link").forEach((b) => b.classList.remove("active"));
-      btn.classList.add("active");
-
-      document.querySelectorAll(".view").forEach((view) => view.classList.remove("active"));
-      document.getElementById(target).classList.add("active");
-    });
-  });
-}
-
 form.addEventListener("submit", (e) => {
   e.preventDefault();
   const data = new FormData(form);
@@ -115,7 +101,7 @@ form.addEventListener("submit", (e) => {
   });
 
   form.reset();
-  renderAdminList();
+  render();
   showToast("Request submitted and HR admin notified.");
 });
 
@@ -124,9 +110,8 @@ document.querySelectorAll("[data-filter]").forEach((btn) => {
     activeFilter = btn.dataset.filter;
     document.querySelectorAll(".pill").forEach((p) => p.classList.remove("active"));
     btn.classList.add("active");
-    renderAdminList();
+    render();
   });
 });
 
-wireNavigation();
-renderAdminList();
+render();
