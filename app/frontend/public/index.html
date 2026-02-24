@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Approval Workflow Demo</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <h1>Invoice Approval Dashboard</h1>
+      <p>India → USA/Canada shipment approvals</p>
+    </header>
+
+    <main class="layout">
+      <section class="card">
+        <h2>Create Approval Request</h2>
+        <form id="requestForm" class="grid">
+          <label>Invoice #<input required name="invoice" placeholder="INV-2026-001" /></label>
+          <label>Material<input required name="material" placeholder="Steel Rods" /></label>
+          <label>Weight (kg)<input required name="weight" type="number" min="1" step="0.1" /></label>
+          <label>Cost (USD)<input required name="cost" type="number" min="1" step="0.01" /></label>
+          <label>Destination
+            <select name="destination" required>
+              <option value="USA">USA</option>
+              <option value="Canada">Canada</option>
+            </select>
+          </label>
+          <label>Ship Date<input required name="shipDate" type="date" /></label>
+          <label>Priority
+            <select name="priority" required>
+              <option>High</option>
+              <option selected>Medium</option>
+              <option>Low</option>
+            </select>
+          </label>
+          <button type="submit" class="primary">Submit Request</button>
+        </form>
+      </section>
+
+      <section class="card">
+        <div class="row">
+          <h2>Pending for HR Admin</h2>
+          <div class="filters">
+            <button data-filter="All" class="pill active">All</button>
+            <button data-filter="High" class="pill">High</button>
+            <button data-filter="Medium" class="pill">Medium</button>
+            <button data-filter="Low" class="pill">Low</button>
+          </div>
+        </div>
+        <p class="hint">Sorted by Priority (High → Low) and oldest request first.</p>
+        <div id="list" class="list"></div>
+      </section>
+    </main>
+
+    <div id="toast" class="toast" aria-live="polite"></div>
+
+    <script src="./app.js"></script>
+  </body>
+</html>
