@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Approval Workflow Showcase</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <input type="checkbox" id="theme-toggle" class="theme-toggle-input" aria-label="Enable dark mode" />
+
+    <div class="page">
+      <header class="hero card">
+        <div>
+          <p class="eyebrow">Mechanical App • Workflow Showcase</p>
+          <h1>Invoice Approval Workflow</h1>
+          <p class="subtext">
+            A visual demo of the request-to-approval flow for material invoices shipped from India to USA/Canada.
+          </p>
+        </div>
+
+        <label for="theme-toggle" class="theme-toggle">
+          <span>☀️ Light</span>
+          <span>🌙 Dark</span>
+        </label>
+      </header>
+
+      <main class="grid">
+        <section class="card">
+          <h2>Workflow Steps</h2>
+          <ol class="timeline">
+            <li>
+              <h3>1) Submit Request</h3>
+              <p>User submits invoice number, material, weight, cost, destination, ship date, and priority.</p>
+            </li>
+            <li>
+              <h3>2) Validation</h3>
+              <p>System checks mandatory fields and validates weight/cost/date before routing.</p>
+            </li>
+            <li>
+              <h3>3) HR Admin Queue</h3>
+              <p>Requests appear in pending queue sorted by Priority (High → Low) and oldest first.</p>
+            </li>
+            <li>
+              <h3>4) Decision</h3>
+              <p>HR Admin can Approve, Reject (with reason), or ask for Clarification.</p>
+            </li>
+            <li>
+              <h3>5) Notify & Ship</h3>
+              <p>Notifications are sent and approved requests move to Ready-to-Ship / Dispatched.</p>
+            </li>
+          </ol>
+        </section>
+
+        <section class="card">
+          <h2>Priority SLA Matrix</h2>
+          <div class="matrix">
+            <article class="tier high">
+              <h3>High Priority</h3>
+              <p>Reminder: 1 hour</p>
+              <p>Escalation: 4 hours</p>
+            </article>
+            <article class="tier medium">
+              <h3>Medium Priority</h3>
+              <p>Reminder: 6 hours</p>
+              <p>Escalation: 24 hours</p>
+            </article>
+            <article class="tier low">
+              <h3>Low Priority</h3>
+              <p>Reminder: 24 hours</p>
+              <p>Escalation: 48 hours</p>
+            </article>
+          </div>
+
+          <h2 class="top-gap">Notification Channels</h2>
+          <div class="chips">
+            <span>In-App</span>
+            <span>Email</span>
+            <span>Teams / Slack (optional)</span>
+            <span>SMS / WhatsApp for escalations</span>
+          </div>
+        </section>
+
+        <section class="card full">
+          <h2>Roles & Responsibility</h2>
+          <div class="roles">
+            <article>
+              <h3>Requester</h3>
+              <ul>
+                <li>Creates invoice approval request.</li>
+                <li>Sets accurate priority.</li>
+                <li>Tracks status and responds to clarifications.</li>
+              </ul>
+            </article>
+            <article>
+              <h3>HR Admin</h3>
+              <ul>
+                <li>Reviews pending requests by priority SLA.</li>
+                <li>Approves / rejects / asks clarification.</li>
+                <li>Ensures audit-ready decision trail.</li>
+              </ul>
+            </article>
+            <article>
+              <h3>Manager (Escalation)</h3>
+              <ul>
+                <li>Handles SLA breaches.</li>
+                <li>Monitors turnaround and bottlenecks.</li>
+                <li>Improves policy and decision consistency.</li>
+              </ul>
+            </article>
+          </div>
+        </section>
+      </main>
+    </div>
+  </body>
+</html>
