@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mechanical App - Approval Workflow Demo</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="app-shell" id="app">
+      <aside class="sidebar">
+        <div class="brand">
+          <h1>Mechanical App</h1>
+          <p>Approval Workflow Demo</p>
+        </div>
+
+        <nav class="nav-tree">
+          <button class="nav-link active" data-view="dashboard">Overview Dashboard</button>
+          <button class="nav-link" data-view="create-request">Create Request</button>
+          <button class="nav-link" data-view="my-requests">My Requests</button>
+          <button class="nav-link" data-view="admin-queue">HR Admin Queue</button>
+          <button class="nav-link" data-view="notifications">Notifications</button>
+          <button class="nav-link" data-view="documents">Documents / Manuals</button>
+        </nav>
+
+        <div class="sidebar-footer">
+          <label class="toggle-row">
+            <span>🌙 Dark Mode</span>
+            <input id="themeToggle" type="checkbox" />
+          </label>
+        </div>
+      </aside>
+
+      <main class="content">
+        <header class="topbar card">
+          <div>
+            <h2 id="viewTitle">Overview Dashboard</h2>
+            <p id="viewSubtitle">Track end-to-end invoice approvals for India → USA/Canada shipments.</p>
+          </div>
+          <div class="topbar-right">
+            <span class="pill" id="clockPill">--:--</span>
+          </div>
+        </header>
+
+        <section class="view active" id="dashboard">
+          <div class="cards-grid" id="kpiCards"></div>
+
+          <div class="two-col">
+            <article class="card">
+              <h3>Priority Distribution</h3>
+              <div id="priorityBars"></div>
+            </article>
+            <article class="card">
+              <h3>Recent Activity</h3>
+              <ul id="activityList" class="clean-list"></ul>
+            </article>
+          </div>
+        </section>
+
+        <section class="view" id="create-request">
+          <article class="card">
+            <h3>Create New Approval Request</h3>
+            <form id="requestForm" class="form-grid">
+              <label>Invoice Number<input required name="invoice" placeholder="INV-2026-210" /></label>
+              <label>Material Name<input required name="material" placeholder="Titanium Plates" /></label>
+              <label>Weight (kg)<input required type="number" name="weight" min="1" step="0.1" /></label>
+              <label>Cost (USD)<input required type="number" name="cost" min="1" step="0.01" /></label>
+              <label>Destination
+                <select required name="destination">
+                  <option>USA</option>
+                  <option>Canada</option>
+                </select>
+              </label>
+              <label>Required Ship Date<input required type="date" name="shipDate" /></label>
+              <label>Priority
+                <select required name="priority">
+                  <option>High</option>
+                  <option selected>Medium</option>
+                  <option>Low</option>
+                </select>
+              </label>
+              <label>Requester Name<input required name="requester" placeholder="Arjun Mehta" /></label>
+              <label class="full-width">Business Justification
+                <textarea required name="justification" rows="3" placeholder="Urgent spare parts required for client maintenance window."></textarea>
+              </label>
+              <button class="btn primary full-width" type="submit">Submit for HR Approval</button>
+            </form>
+          </article>
+        </section>
+
+        <section class="view" id="my-requests">
+          <article class="card">
+            <div class="row">
+              <h3>My Submitted Requests</h3>
+              <select id="myFilter">
+                <option value="All">All Statuses</option>
+                <option value="Pending">Pending</option>
+                <option value="Approved">Approved</option>
+                <option value="Rejected">Rejected</option>
+                <option value="ClarificationNeeded">Clarification Needed</option>
+              </select>
+            </div>
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Invoice</th>
+                    <th>Material</th>
+                    <th>Priority</th>
+                    <th>Status</th>
+                    <th>Destination</th>
+                    <th>Ship Date</th>
+                  </tr>
+                </thead>
+                <tbody id="myRequestsBody"></tbody>
+              </table>
+            </div>
+          </article>
+        </section>
+
+        <section class="view" id="admin-queue">
+          <article class="card">
+            <div class="row">
+              <h3>HR Admin Pending Queue</h3>
+              <div class="filters">
+                <button class="btn secondary active" data-priority-filter="All">All</button>
+                <button class="btn secondary" data-priority-filter="High">High</button>
+                <button class="btn secondary" data-priority-filter="Medium">Medium</button>
+                <button class="btn secondary" data-priority-filter="Low">Low</button>
+              </div>
+            </div>
+            <div id="adminCards" class="card-list"></div>
+          </article>
+        </section>
+
+        <section class="view" id="notifications">
+          <article class="card">
+            <h3>Notification Center (Dummy)</h3>
+            <ul id="notificationList" class="clean-list"></ul>
+          </article>
+        </section>
+
+        <section class="view" id="documents">
+          <div class="two-col">
+            <article class="card">
+              <h3>User Manual (Requester)</h3>
+              <ol>
+                <li>Open <b>Create Request</b> and enter invoice + material details.</li>
+                <li>Set priority correctly (High only for urgent or customs-sensitive shipments).</li>
+                <li>Submit and track updates in <b>My Requests</b>.</li>
+                <li>If clarification is requested, update details and resubmit quickly.</li>
+              </ol>
+            </article>
+            <article class="card">
+              <h3>User Manual (HR Admin)</h3>
+              <ol>
+                <li>Open <b>HR Admin Queue</b> and filter by priority.</li>
+                <li>Review details: weight, cost, destination, and ship date.</li>
+                <li>Take action: Approve / Reject / Clarification Needed.</li>
+                <li>Use comments for rejection or clarification to improve turnaround.</li>
+              </ol>
+            </article>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <div id="toast" class="toast"></div>
+
+    <script src="./app.js"></script>
+  </body>
+</html>
